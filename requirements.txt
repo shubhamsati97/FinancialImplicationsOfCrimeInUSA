@@ -1,0 +1,2 @@
+yfinance==0.2.31
+jupyter==1.0.0
