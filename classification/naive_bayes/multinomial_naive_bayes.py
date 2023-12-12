@@ -24,18 +24,24 @@ normalizer = Normalizer()
 target = merged_df_spy.iloc[:, -1:]
 target = normalizer.fit_transform(target)
 
+from sklearn.decomposition import PCA
+
+pca = PCA(n_components=2)
+pca.fit(features_scaled)
+features_scaled = pca.transform(features_scaled)
+
 # Splitting into training and test
-X_train, X_test, y_train, y_test = train_test_split(features_scaled, target, test_size=0.2)
-
-# Define and fit the Multinomial Naive Bayes model
-model = MultinomialNB(alpha=0.5)
-model.fit(X_train, y_train)
-
-# Make predictions
-y_pred = model.predict(X_test)
-
-accuracy = accuracy_score(y_test, y_pred)
-f1 = f1_score(y_test, y_pred, average='weighted')
-
-print("Accuracy:", accuracy)
-print("F1-Score:", f1)
+# X_train, X_test, y_train, y_test = train_test_split(features_scaled, target, test_size=0.2)
+#
+# # Define and fit the Multinomial Naive Bayes model
+# model = MultinomialNB(alpha=0.5)
+# model.fit(X_train, y_train)
+#
+# # Make predictions
+# y_pred = model.predict(X_test)
+#
+# accuracy = accuracy_score(y_test, y_pred)
+# f1 = f1_score(y_test, y_pred, average='weighted')
+#
+# print("Accuracy:", accuracy)
+# print("F1-Score:", f1)
